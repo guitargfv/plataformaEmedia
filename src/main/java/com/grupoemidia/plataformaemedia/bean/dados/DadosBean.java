@@ -25,7 +25,7 @@ public class DadosBean implements Serializable {
 
     }
 
-    public String diferençaDeLeads() {
+    public String diferencaDeLeads() {
         if (verificaTotalMaiorQueZero()) {
             if (!verificaNovosMenorQueZero()) {
                 if (verificaSeTotalMaiorQueNovos()) {
@@ -63,28 +63,16 @@ public class DadosBean implements Serializable {
         this.dados = dados;
     }
 
-    public boolean verificaTotalMaiorQueZero() {
-        if (dados.getTotalDeLeads() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+    private boolean verificaTotalMaiorQueZero() {
+        return dados.getTotalDeLeads() > 0;
     }
 
-    public boolean verificaNovosMenorQueZero() {
-        if (dados.getNovosLeads() < 0) {
-            return true;
-        } else {
-            return false;
-        }
+    private boolean verificaNovosMenorQueZero() {
+        return dados.getNovosLeads() < 0;
     }
 
-    public boolean verificaSeTotalMaiorQueNovos() {
-        if (dados.getTotalDeLeads() >= dados.getNovosLeads()) {
-            return true;
-        } else {
-            return false;
-        }
+    private boolean verificaSeTotalMaiorQueNovos() {
+        return dados.getTotalDeLeads() >= dados.getNovosLeads();
     }
 
     public String retornaCor() {
