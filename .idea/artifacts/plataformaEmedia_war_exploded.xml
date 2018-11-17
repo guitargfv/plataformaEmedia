@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="plataformaEmedia:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/plataformaEmedia_war_exploded.war</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="plataformaEmedia/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="plataformaEmedia" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.sun.faces:jsf-api:2.2.13" />
+          <element id="library" level="project" name="Maven: com.sun.jersey:jersey-bundle:1.8" />
+          <element id="library" level="project" name="Maven: javax.ws.rs:jsr311-api:1.1.1" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.5" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
