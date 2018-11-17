@@ -25,16 +25,34 @@ public class DadosBean implements Serializable {
 
     }
 
-    public int diferençaDeLeads() {
-        return dados.getTotalDeLeads() - dados.getNovosLeads();
+    public String diferençaDeLeads() {
+        if (verificaTotalMaiorQueZero()) {
+            if (!verificaNovosMenorQueZero()) {
+                if (verificaSeTotalMaiorQueNovos()) {
+                    return "+" + String.valueOf(dados.getTotalDeLeads() - dados.getNovosLeads()) + "(";
+                } else {
+                    return "Inconsistência de dados, total de Leads consta no servidor menor que os de novos leads ";
+                }
+            } else {
+                return "Inconsistência de dados, no servidor o número de novos Leads está registrado com valor menor que zero";
+            }
+        }
+        return "Inconsistência de dados, no servidor o número total de Leads está registrado com valor menor ou igual a zero";
     }
 
     public String porcentagemDeDiferencaDeLeads() {
-        if(dados.getTotalDeLeads() != 0){
-            double totalDeLeads = dados.getTotalDeLeads();
-            return String.format("%.2f",((dados.getNovosLeads() * 100) / totalDeLeads));
+        if (verificaTotalMaiorQueZero()) {
+            if (!verificaNovosMenorQueZero()) {
+                if (verificaSeTotalMaiorQueNovos()) {
+                    double totalDeLeads = dados.getTotalDeLeads();
+                    return String.format("%.2f", ((dados.getNovosLeads() * 100) / totalDeLeads)) + "%)";
+                } else {
+                    return " ";
+                }
+            }
+            return " ";
         }
-        return "Não temos Leads no momento";
+        return " ";
     }
 
     public Dados getDados() {
@@ -43,5 +61,42 @@ public class DadosBean implements Serializable {
 
     public void setDados(Dados dados) {
         this.dados = dados;
+    }
+
+    public boolean verificaTotalMaiorQueZero() {
+        if (dados.getTotalDeLeads() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean verificaNovosMenorQueZero() {
+        if (dados.getNovosLeads() < 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean verificaSeTotalMaiorQueNovos() {
+        if (dados.getTotalDeLeads() >= dados.getNovosLeads()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String retornaCor() {
+        if (verificaTotalMaiorQueZero()) {
+            if (!verificaNovosMenorQueZero()) {
+                if (verificaSeTotalMaiorQueNovos()) {
+                    return "#1edc71";
+                }
+                return "#ee4266";
+            }
+            return "#ee4266";
+        }
+        return "#ee4266";
     }
 }
